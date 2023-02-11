@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}
+        {% endblock title %}</title>
+    <!-- plugins:css -->
+
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <link rel="shortcut icon" href="static/images/favicon.ico" />
+    <link href="static/images/favicon.ico" rel="icon">
+    <link href="static/images/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    {% block style %}
+    {% endblock style %}
+    <!-- Layout styles -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/style-user.css') }}" />
+    <!-- End layout styles -->
+    <!-- Vendor CSS Files -->
+    <link href="static/assets/vendor/mdi/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/css/vendor.bundle.base.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="/home"><img src="static/images/fixlogo.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link" href="/home">
+                            <p class="mb-1 text-black">Home</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link" href="/visualisasi">
+                            <p class="mb-1 text-black">EDA</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link" href="/prediction_user">
+                            <p class="mb-1 text-black">Prediksi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link" href="/history_user">
+                            <p class="mb-1 text-black">History</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link">
+                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="/logout">
+                            <i class="mdi mdi-power"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <img src="static/images/dashboard/maternity.png" alt="" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3>Selamat Datang,</h3>
+                                        <h1 class="text-uppercase text-hijau">
+                                            {% if current_user.is_authenticated %}
+                                            <div class="font-weight-bold ">
+                                                {{current_user.username}}
+                                            </div>
+                                            {% endif %}
+                                        </h1>
+
+                                        <p class="font-size: 5rem;">
+                                            Kehamilan yang sehat merupakan hal yang sangat penting bagi ibu dan janin yang dikandung.
+                                            Beberapa faktor penting yang perlu diperhatikan selama kehamilan untuk
+                                            memastikan kehamilan berjalan dengan baik.
+                                            <br>
+                                            Maka dari itu, Ziramed membuat Sistem Prediksi Diagnosa Kehamilan untuk alternatif melakukan 
+                                            diagnosa dengan fitur yang terdapat pada faktor dibawah ini.
+                                            <br>
+                                            <div class="button">
+                                                <a href="/prediction_user" class="btn btn-greens btn-rounded btn-fw ">Tes Prediksi Disini</a>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card card bg-white card-img-holder text-hijau">
+                            <div class="card-body">
+                                <h4 class="font-weight-normal mb-3 ">
+                                    <i class="mdi mdi-calendar-today mdi-24px float-right"></i>
+                                     Umur 
+                                </h4>
+                                <h6 class="card-text">Usia ibu hamil juga berpengaruh pada kehamilan yang sehat.
+                                    Usia yang terlalu muda atau terlalu tua bisa menyebabkan komplikasi selama
+                                    kehamilan.
+                                    Usia ideal untuk ibu hamil adalah antara 20-35 tahun.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card card bg-white card-img-holder text-hijau">
+                            <div class="card-body">
+                                <h4 class="font-weight-normal mb-3"> 
+                                    <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                        Tekanan Darah
+                                </h4>
+                                <h6 class="card-text">Tekanan darah yang normal pada saat kehamilan adalah sekitar
+                                    120/80 mmHg.
+                                    Jika tekanan darah ibu meningkat, hal ini dapat menyebabkan komplikasi seperti
+                                    preeclampsia
+                                    atau keguguran. Oleh karena itu, penting untuk memantau tekanan darah secara
+                                    berkala.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card bg-white card-img-holder text-hijau">
+                            <div class="card-body">
+                                <h4 class="font-weight-normal mb-3"> 
+                                    <i class="mdi mdi-hospital mdi-24px float-right"></i>
+                                    Gula Darah
+                                </h4>
+                                <h6 class="card-text">Ibu hamil harus memantau kadar gula darah mereka untuk mencegah
+                                    komplikasi seperti gestational diabetes. Ibu harus memastikan kadar gula darah
+                                    mereka
+                                    stabil dan berada pada tingkat yang normal.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card card bg-white card-img-holder text-hijau">
+                            <div class="card-body">
+                                <h4 class="font-weight-normal mb-3"> 
+                                    <i class="mdi mdi-thermometer mdi-24px float-right"></i> 
+                                    Suhu Tubuh
+                                </h4>
+                                <h6 class="card-text">Suhu tubuh ibu hamil harus berada dalam rentang normal,
+                                    yaitu antara 36,5°C sampai 37°C. Suhu tubuh yang tinggi atau rendah dapat
+                                    menyebabkan komplikasi seperti infeksi atau masalah kesehatan lain.</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 stretch-card grid-margin">
+                        <div class="card card bg-white card-img-holder text-hijau">
+                            <div class="card-body">
+                                <h4 class="font-weight-normal mb-3">
+                                    <i class="mdi mdi-heart-pulse mdi-24px float-right"></i>
+                                    Detak Jantung 
+                                </h4>
+                                <h6 class="card-text">Detak jantung janin harus dalam rentang normal,
+                                    yaitu antara 120-160 denyut per menit. Jika detak jantung janin menurun
+                                    atau meningkat secara drastis, hal ini dapat menunjukkan adanya masalah
+                                    dan memerlukan perawatan medis segera.</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid d-flex justify-content-between">
+                    <span class="text-muted d-block text-center d-sm-inline-block mx-auto">Copyright © ziramed
+                        2023</span>
+                </div>
+            </footer>
+            <!-- partial -->
+
+        </div>
+        <!-- main-panel ends -->
+
+
+
+        <!-- plugins:js -->
+        <script src="static/assets/vendor/js/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page -->
+        <script src="static/assets/vendor/chart.js/Chart.min.js"></script>
+        <script src="static/assets/js/jquery.cookie.js" type="text/javascript"></script>
+        <!-- End plugin js for this page -->
+        <!-- inject:js -->
+        <script src="static/assets/js/off-canvas.js"></script>
+        <script src="static/assets/js/hoverable-collapse.js"></script>
+        <script src="static/assets/js/misc.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page -->
+        <script src="static/assets/js/dashboard.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+
+</body>
+
+</html>

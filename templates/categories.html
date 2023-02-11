@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+Ziramed
+{% endblock title %}
+
+{% block body %}
+<div class="page-header">
+  <h3 class="page-title"> Service </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Service Hospital</h4>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{message}}
+
+
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <form class="forms-sample" action= "/categories" method="post">
+        <div class="form-group">
+          <label for="cat">Service category</label>
+          <input type="text" class="form-control" name="cat" id="cat">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+      </form>      
+    </div>
+  </div>
+</div>
+  
+{% endblock body %}
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+
+  <div class="row">
+
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+      <form action="/department" method="post">
+
+
+        <div class="form-group">
+          <label for="dept">Department Name</label>
+          <input type="text" class="form-control" name="dept" id="dept">
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-danger btn-sm btn-block">Add Department</button>
+      </form>
+      <br>
+      <br>
+
+    </div>
+
+    <div class="col-md-4"></div>
+
+  </div>
+</div> -->
+
+
+

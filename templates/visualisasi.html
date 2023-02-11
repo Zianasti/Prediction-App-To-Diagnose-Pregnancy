@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+{% block title %}
+Ziramed{% endblock title %}
+
+
+{% block body %}
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> Exploratory Data Analysis </h4>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{message}}
+
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <br>
+
+<center>
+  <iframe width="1100" height="900" src="https://lookerstudio.google.com/embed/reporting/a0168a2f-9452-42ec-884d-c841ca52c921/page/SIqCD" frameborder="0" style="border:0" allowfullscreen></iframe>
+</center>
+
+</div>
+
+         
+    </div>
+  </div>
+
+      
+
+
+
+{% endblock body %}

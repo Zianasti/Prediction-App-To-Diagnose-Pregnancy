@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}
+Ziramed
+{% endblock title %}
+
+
+
+{% block body %}
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Details Doctor</h4>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{message}}
+
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>NIP</th>
+            <th>NAME</th>
+            <!-- <th>DOB</th>
+            <th>GENDER</th> -->
+            <!-- <th>SERVICE</th> -->
+            <th>DAY</th>
+            <th>PHONE NUMBER</th>
+            <!-- <th>ADDRESS</th> -->
+            <th>EDIT</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in query %}
+          <tr>
+            <th>{{post.did}}</th>
+            <td>{{post.nip}}</td>
+            <td>{{post.dname}}</td>
+            <!-- <td>{{post.dob}}</td>
+            <td>{{post.gender}}</td> -->
+            <!-- <td>{{post.service}}</td> -->
+            <td>{{post.email}}</td>
+            <td>{{post.number}}</td>
+            <!-- <td>{{post.address}}</td> -->
+            <td><a href="/editdoctor/{{post.did}}"><button class="btn btn-primary">Edit </button> </a> </td>
+            <td><a href="/deletedoctor/{{post.did}}"><button onclick="return confirm('Are you sure to Delete data');"
+                  class="btn btn-danger">Delete </button> </a> </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

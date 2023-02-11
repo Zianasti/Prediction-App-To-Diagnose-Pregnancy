@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Ziramed{% endblock title %}
+
+
+{% block body %}
+<div class="page-header">
+  <h3 class="page-title"> Prediction </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Medical Record </h4>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{message}}
+
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <br>
+      <form class="form-sample" action="/addprediction" method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="cat">Patient</label>
+              <div class="col-sm-9">
+                <select class="form-control form-control-lg" id="nik" name="nik" required>
+                  <option selected>Select NIK</option>
+                  {% for n in query %}
+                  <option value="{{n.nik}}">{{n.nik}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="age">Umur</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="age" id="age" min="16" max="50" placeholder="Umur (dalam tahun) - contoh: 35">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="sistole">Sistole</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="sistole" id="sistole" min="80" max="140" placeholder="Nilai sistole (dalam mmHg) - contoh: 120">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="diastole">Diastole</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="diastole" id="diastole" min="50" max="90" placeholder="Nilai diastole (dalam mmHg) - contoh: 80">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="bs">Gula Darah</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="bs" id="bs" min="70" max="300" placeholder="Nilai gula darah (dalam mg/dL) - contoh: 100">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="heart_rate">Detak Jantung</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" name="heart_rate" id="heart_rate" min="60" max="100" placeholder="Detak jantung (dalam denyut per menit) - contoh: 80">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="bod_temp">Suhu Tubuh</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="bod_temp" id="bod_temp" min="35" max="42" placeholder="Suhu tubuh (dalam °C) - contoh: 36.5"> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success me-2">Predict</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock body %}

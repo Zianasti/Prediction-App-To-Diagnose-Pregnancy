@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+Ziramed{% endblock title %}
+
+
+{% block body %}
+<div class="page-header">
+  <h3 class="page-title"> Model Training</h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> Training Machine Learning Menggunakan 2 Model </h4>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{message}}
+
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <br>
+      <form class="form-sample" action="/training" method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Model</label>
+              <div class="col-sm-9">
+                <select class="form-control form-control-lg" id="model" name="model">
+<!--                   <option selected>Select Model</option> -->
+                  <option value="RandomForest">RandomForest</option>
+                  <option value="DecisionTree">DecisionTree</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        <button type="submit" class="btn btn-success me-2">Training</button>
+      </form>
+
+
+    {{model}}
+         
+    </div>
+  </div>
+</div>
+{% endblock body %}

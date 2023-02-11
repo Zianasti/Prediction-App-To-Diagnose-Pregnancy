@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}
+Ziramed
+{% endblock title %}
+
+
+
+{% block body %}
+<div class="page-header">
+  <h3 class="page-title"> Scheduling Doctor </h3>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/schedule"> <button class="btn btn-success">Check Schedule Here</button></a ></li>
+    </ol>
+  </nav>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> Schedule of doctor's work </h4>
+      {% with messages=get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        {{message}}
+
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <br>
+      <form class="form-sample" action="/addschedule" method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="nip">Doctor</label>
+              <div class="col-sm-9">
+                <select class="form-control form-control-lg" id="nip" name="nip" required>
+                  <option selected>Select NIP</option>
+                  {% for n in query %}
+                  <option value="{{n.nip}}">{{n.nip}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="day">Day</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" name="day" id="day">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="start">Start</label>
+              <div class="col-sm-9">
+                <input type="time" class="form-control" name="start" id="start">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label" for="end">End</label>
+              <div class="col-sm-9">
+                <input type="time" class="form-control" name="end" id="end">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success me-2">Add Schedule</button> 
+      </form>
+
+      
+     
+
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
+
